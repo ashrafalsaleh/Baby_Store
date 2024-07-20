@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+         header {
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            z-index: 1;
+        }
+        .logo img {
+            height: 70px;
+            width: 70px;
+            margin-left: 150px;
+            margin-top: 5px;
+        }
+        .items ul li {
+            display: inline;
+            font-size: 23px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .items ul li a {
+            display: inline;
+            font-size: 23px;
+            font-weight: bold;
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+        }
+        .items ul {
+            margin-right: 50px;
+        }
+        .items {
+            display: flex;
+            align-content: center;
+            margin-top: 10px;
+        }
+        .items ul li a:hover {
+            color: rgb(239, 8, 8);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .cart-container {
+            padding: 20px;
+            margin-top: 130px;
+        }
+        .cart-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-name {
+            font-size: 18px;
+        }
+        .cart-item-quantity,
+        .cart-item-price {
+            font-size: 16px;
+        }
+        .cart-item-delete {
+            font-size: 16px;
+            color: red;
+            cursor: pointer;
+        }
+        .cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .checkout-btn {
+            padding: 10px 15px;
+            font-size: 18px;
+            background-color: rgb(56, 175, 107);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-btn:hover {
+            background-color: rgb(26, 105, 51);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./logoo.jpg">
+        </div>
+        <div class="items">
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./shop.html">Shop</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="cart-container">
+        <div class="cart-title">Shopping Cart</div>
+        <div id="cart-items"></div>
+        <div class="cart-total" id="cart-total"></div>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartItemsContainer = document.getElementById('cart-items');
+            let cartTotalContainer = document.getElementById('cart-total');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-quantity">Quantity: ${item.quantity}</div>
+                        <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                        <div class="cart-item-delete" onclick="removeItem(${index})">Delete</div>
+                    </div>
+                `;
+            });
+
+            cartTotalContainer.innerText = `Total: $${total.toFixed(2)}`;
+        } 
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function checkout() {
+            let total = document.getElementById('cart-total').innerText.replace('Total: $', '');
+            localStorage.setItem('total', total);
+            window.location.href = './payment.html';
+        }
+
+        window.onload = loadCart;
+    </script>
+    
+</body>
+</html>

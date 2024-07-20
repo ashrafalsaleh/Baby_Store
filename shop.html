@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            z-index: 1;
+        }
+        .logo img {
+            height: 70px;
+            width: 70px;
+            margin-left: 150px;
+            margin-top: 5px;
+        }
+        #icons {
+            color: black;
+            font-size: 30px;
+        }
+        #icons:hover {
+            color: rgb(239, 8, 8);
+        }
+        
+        .items ul li {
+            display: inline;
+            font-size: 23px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .items ul li a {
+            display: inline;
+            font-size: 23px;
+            font-weight: bold;
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+        }
+        .items ul {
+            margin-right: 50px;
+        }
+        .items {
+            display: flex;
+            align-content: center;
+            margin-top: 20px;
+        }
+        .items ul li a:hover {
+            color: rgb(239, 8, 8);
+        }
+        .card:hover {
+            border: 1px solid;
+            box-shadow: 5px 10px 20px rgb(195, 191, 191) inset;
+        }
+        h5 {
+            color: black;
+        }
+        p {
+            color: black;
+        }
+        /* New CSS rule to remove underline from links inside cards */
+        .card a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./logoo.jpg">
+        </div>
+        <div class="items">
+            <a href="./cart.html"><i class="fas fa-cart-shopping" id="icons"></i></a>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./shop.html">Shop</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="container mt-5 pt-5">
+        <div class="row mt-5 pt-5">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="./stroller.html">
+                    <img src="./stroller.jpg" class="card-img-top" alt="Baby stroller">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Baby stroller</h5>
+                        <p class="card-text">Enjoy the best baby strollers in the Middle East.</p>
+                        <p class="font-weight-bold">$75.99</p></a>
+                        <input type="number" name="number" class="form-control mb-2" id="number1" min="0" onchange="updateTotal()">
+                        <button class="btn btn-success btn-block" onclick="addToCart('Stroller', 75.99, document.getElementById('number1').value)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="./swing.html">
+                    <img src="./swing.jpg" class="card-img-top" alt="Swing">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Swing</h5>
+                        <p class="card-text">Make your son happy with the best types of swings.</p>
+                        <p class="font-weight-bold">$43.50</p></a>
+                        <input type="number" name="number" class="form-control mb-2" id="number2" min="0" onchange="updateTotal()">
+                        <button class="btn btn-success btn-block" onclick="addToCart('Swing', 43.50, document.getElementById('number2').value)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="./car.html">
+                    <img src="./car.jpg" class="card-img-top" alt="Cars">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Cars</h5>
+                        <p class="card-text">The best offers on the best children's cars in the region.</p>
+                        <p class="font-weight-bold">$99.99</p></a>
+                        <input type="number" name="number" class="form-control mb-2" id="number3" min="0" onchange="updateTotal()">
+                        <button class="btn btn-success btn-block" onclick="addToCart('Car', 99.99, document.getElementById('number3').value)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="./scooter.html">
+                    <img src="./scooter.jpg" class="card-img-top" alt="Scooter">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Scooter</h5>
+                        <p class="card-text">The best and best prices on scooters in Jordan.</p>
+                        <p class="font-weight-bold">$33.99</p></a>
+                        <input type="number" name="number" class="form-control mb-2" id="number4" min="0" onchange="updateTotal()">
+                        <button class="btn btn-success btn-block" onclick="addToCart('Scooter', 33.99, document.getElementById('number4').value)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="./kitchen.html">
+                    <img src="./kitchen.jpg" class="card-img-top" alt="Kitchen">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kitchen</h5>
+                        <p class="card-text">Enjoy the best kitchen toys for childrensfsb frsfsfsfsfsf.</p>
+                        <p class="font-weight-bold">$8.99</p></a>
+                        <input type="number" name="number" class="form-control mb-2" id="number5" min="0" onchange="updateTotal()">
+                        <button class="btn btn-success btn-block" onclick="addToCart('Kitchen', 8.99, document.getElementById('number5').value)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="./bicycle.html">
+                    <img src="./bicycle.jpg" class="card-img-top" alt="Bicycle">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Bicycle</h5>
+                        <p class="card-text">The best offers for the most powerful bicycle game.</p>
+                        <p class="font-weight-bold">$68.55</p></a>
+                        <input type="number" name="number" class="form-control mb-2" id="number6" min="0" onchange="updateTotal()">
+                        <button class="btn btn-success btn-block" onclick="addToCart('Bicycle', 68.55, document.getElementById('number6').value)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function addToCart(name, price, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            quantity = parseInt(quantity);
+            if (quantity > 0) {
+                const product = { name, price, quantity };
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${quantity} ${name}(s) added to cart!`);
+            } else {
+                alert('Please enter a valid quantity.');
+            }
+        }
+    </script>
+    
+</body>
+</html>
